@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%
+	pageContext.setAttribute("newLine", "\n");
+%>
 <!doctype html>
 <html>
 <head>
@@ -31,11 +34,9 @@
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-					<h4>Spring Camp 2016 참여기</h4>
-					
-					
+					<h4>${postList2.title }</h4>
 					<p>
-						${postList2.contents } 
+						${fn:replace(postList2.contents,newLine,"<br>") }
 					<p>
 				</div>
 				<c:forEach items='${postList }' var='vo2' varStatus='status'>
@@ -56,9 +57,20 @@
 		<div id="navigation">
 			<h2>카테고리</h2>			
 			<c:forEach items='${categoryList }' var='vo' varStatus='status'>
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/${vo.id }/${vo.no}">${vo.name }</a></li>
-				</ul>
+				<c:choose>
+					<c:when test="${vo.categoryCnt == 0 }">
+						<ul><li><a href="" onclick="return noPost();">${vo.name }</a></li></ul>
+						<script type="text/javascript">
+							function noPost(){
+								return alert("카테고리 내에 글이 존재하지 않습니다.");
+							}
+						</script>
+					</c:when>
+					<c:otherwise>
+						<ul><li><a href="${pageContext.request.contextPath}/${vo.id }/${vo.no}">${vo.name }</a></li></ul>
+					</c:otherwise>
+				</c:choose>
+				
 			</c:forEach> 
 		</div>
 		<c:import url="/WEB-INF/views/blog/includes/footer.jsp" />
