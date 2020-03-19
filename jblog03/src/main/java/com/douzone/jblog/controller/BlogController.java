@@ -45,7 +45,7 @@ public class BlogController {
 			postNo = pathNo1.get();
 			List<PostVO> postList = blogService.getPost(postNo);
 			model.addAttribute("postList",postList);
-		}
+		}//
 
 		BlogVO blogVO = blogService.getContents(id.get());
 		model.addAttribute("blogVO",blogVO);
