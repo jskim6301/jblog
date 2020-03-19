@@ -45,7 +45,7 @@ public class BlogController {
 			postNo = pathNo1.get();
 			List<PostVO> postList = blogService.getPost(postNo);
 			model.addAttribute("postList",postList);
-		}//
+		}
 
 		BlogVO blogVO = blogService.getContents(id.get());
 		model.addAttribute("blogVO",blogVO);
@@ -59,10 +59,12 @@ public class BlogController {
 	@RequestMapping(value="/blog/basic",method=RequestMethod.GET)
 	public String basic(@AuthUser UserVO authUser,Model model,
 			@PathVariable("id") Optional<String> id) {
-		if(authUser == null) {
-			return "redirect:/user/login";
+		if( authUser == null || !id.get().equals(authUser.getId())  ) {
+			return "redirect:/main";
 		}		
 		
+		System.out.println("authUser.getId()>>"+authUser.getId());
+		System.out.println("id.get()>>"+id.get());
 		BlogVO blogVO = blogService.getContents(id.get());
 		model.addAttribute("blogVO",blogVO);
 		
@@ -84,8 +86,8 @@ public class BlogController {
 	
 	@RequestMapping(value="/blog/category",method=RequestMethod.GET)
 	public String category(@PathVariable("id") Optional<String> id,@AuthUser UserVO authUser,Model model) {
-		if(authUser == null) {
-			return "redirect:/user/login";
+		if( authUser == null || !id.get().equals(authUser.getId())  ) {
+			return "redirect:/main";
 		}
 		
 		BlogVO blogVO = blogService.getContents(id.get());
@@ -129,8 +131,8 @@ public class BlogController {
 	
 	@RequestMapping(value="/blog/write",method=RequestMethod.GET)
 	public String write(@PathVariable("id") Optional<String> id,@AuthUser UserVO authUser,Model model) {
-		if(authUser == null) {
-			return "redirect:/user/login";
+		if( authUser == null || !id.get().equals(authUser.getId())  ) {
+			return "redirect:/main";
 		}	
 		
 		BlogVO blogVO = blogService.getContents(id.get());
@@ -148,7 +150,7 @@ public class BlogController {
 		if(authUser == null) {
 			return "redirect:/user/login";
 		}	
-
+		
 		blogService.addContents(postVO);
 		
 		return "redirect:/"+authUser.getId()+"/blog/write";
