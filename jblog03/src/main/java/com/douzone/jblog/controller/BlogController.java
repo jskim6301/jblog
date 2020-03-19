@@ -63,8 +63,6 @@ public class BlogController {
 			return "redirect:/main";
 		}		
 		
-		System.out.println("authUser.getId()>>"+authUser.getId());
-		System.out.println("id.get()>>"+id.get());
 		BlogVO blogVO = blogService.getContents(id.get());
 		model.addAttribute("blogVO",blogVO);
 		
@@ -92,8 +90,6 @@ public class BlogController {
 		
 		BlogVO blogVO = blogService.getContents(id.get());
 		model.addAttribute("blogVO",blogVO);
-		
-		
 		
 		
 		Integer categoryVoMin = blogService.deleteCategoryMin(authUser.getId());

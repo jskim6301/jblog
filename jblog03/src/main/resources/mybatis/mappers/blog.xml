@@ -49,7 +49,8 @@
 				a.title,
 				a.contents,
 				a.reg_date as regDate,
-				b.no as categoryNo
+				b.no as categoryNo,
+				b.id
 			from post a, category b 
 			where a.category_no = b.no and  b.no = #{no};
 		]]>
@@ -62,7 +63,8 @@
 				a.title,
 			    a.contents,
 			    a.reg_date as regDate,
-			    a.category_no as categoryNo
+			    a.category_no as categoryNo,
+			    b.id
 			from post a, category b 
 			where a.category_no = b.no and a.category_no=#{categoryNo} and a.no=#{postNo} 
 		]]>
