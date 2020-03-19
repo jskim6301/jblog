@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="blog">
+	<update id="update" parameterType="blogvo">
+		<![CDATA[
+			update blog set
+				title = #{title},
+				logo = #{logo}
+			where id = #{id}
+		]]>	
+	</update>
+	
+	<select id="findAll" parameterType="string" resultType="blogvo">
+		<![CDATA[
+			select id,title,logo from blog where id = #{id}
+		]]>
+	</select>
+	<insert id="categoryInsert" parameterType="categoryvo">
+		<![CDATA[
+			insert into category values(null,#{name},#{description},now(),#{id})
+		]]>
+	</insert>
+	<select id="findCategoryById" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+ 			select 
+				a.no,
+				a.name,
+				a.description,
+				a.reg_date,
+				a.id,
+				count(b.category_no) as categoryCnt
+			from category a left join post b on a.no = b.category_no
+			where id= #{id} group by a.no order by a.no desc; 
+		]]>
+	</select>
+		
+	<insert id="postInsert" parameterType="postvo">
+		<![CDATA[
+			insert into post values (null,#{title},#{contents},now(),#{categoryNo})
+		]]>
+	</insert>
+	
+
+	<select id="findPostByNo" parameterType="long" resultType="postvo">
+		<![CDATA[
+			select 
+				a.no,
+				a.title,
+				a.contents,
+				a.reg_date as regDate,
+				b.no as categoryNo
+			from post a, category b 
+			where a.category_no = b.no and  b.no = #{no};
+		]]>
+	</select>
+	
+	<select id="findPostByPostNoAndCategoryNo" parameterType="map" resultType="postvo">
+		<![CDATA[
+			select 
+				a.no,
+				a.title,
+			    a.contents,
+			    a.reg_date as regDate,
+			    a.category_no as categoryNo
+			from post a, category b 
+			where a.category_no = b.no and a.category_no=#{categoryNo} and a.no=#{postNo} 
+		]]>
+	</select>	
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			delete 
+			from category where no=#{no};		
+		]]>
+	</delete>
+	
+	<select id="deleteCategoryMin" parameterType="string" resultType="integer">
+		select min(no) from category where id=#{id}
+	</select>
+	
+</mapper>

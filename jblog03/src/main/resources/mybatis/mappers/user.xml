@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<insert id="insert1" parameterType="uservo">
+		<![CDATA[
+			insert into user values(#{id},#{name},#{password},now())
+		]]>								
+	</insert>
+	
+	<insert id="insert2" parameterType="uservo">
+		<![CDATA[
+			insert into blog values(#{id},'흑우','/assets/upload-images/20202181196586.png')
+		]]>		
+	</insert>
+	
+	<insert id="insert3" parameterType="uservo">
+		<![CDATA[
+			insert into category values(null,'기타',null,now(),#{id})
+		]]>		
+	</insert>
+	
+	<select id="findByIdAndPassword" parameterType="uservo" resultType="uservo">
+		<![CDATA[
+		select id,name	from user where id = #{id} and password = #{password}
+		]]>
+	</select>
+	
+</mapper>
