@@ -30,7 +30,7 @@ public class UserController {
 			model.addAllAttributes(result.getModel());
 			return "/user/join";
 		}
-//		userService.join(vo);
+		userService.join(vo);
 		return "redirect:/user/joinsuccess";
 	}
 	
