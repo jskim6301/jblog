@@ -1,9 +1,25 @@
 package com.douzone.jblog.vo;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class UserVO {
+
+	@NotEmpty
+	@Email
 	private String id;
+	
+	@NotEmpty
+	@Length(min=2,max=5)
 	private String name;
+	
+	@NotEmpty
+	@Pattern(regexp="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=])(?=\\S+$).{8,}")
 	private String password;
+	
 	private String joinDate;
 	
 	public String getId() {
