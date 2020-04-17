@@ -81,4 +81,6 @@
 		select min(no) from category where id=#{id}
 	</select>
 	
+
+	
 </mapper>
