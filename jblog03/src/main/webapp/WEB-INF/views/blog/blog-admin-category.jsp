@@ -31,12 +31,10 @@ var fetchList = function(){
  			data:'',
  			success: function(response){
  				
-				
- 				
   				var contextPath= '${pageContext.request.contextPath }';
  				response.data.contextPath=contextPath;
  				 
- 				
+ 				console.log(response.data);
  	 			var html = listTemplate.render(response);
 
  				$('.admin-cat').append(html); 
@@ -82,6 +80,7 @@ $(function(){
 				}
  				
  				console.log(response.data);
+ 				
  				var html = listItemTemplate.render(response.data);
  				
  				$('#categoryList').after(html);
@@ -100,8 +99,9 @@ $(function(){
  		
 	});
 	
+	
+	//처음 리스트가져오기
 	fetchList();
-
 	
 });
 
@@ -143,7 +143,7 @@ $(function(){
 								</c:if>
 							</td>	
 						</tr>
-					</c:forEach> --%>  
+					</c:forEach>  --%>  
 				</table>
 
    		   		<form id="add-form" action="" method="">

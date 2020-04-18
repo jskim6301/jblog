@@ -21,18 +21,27 @@ public class CategoryController {
 	@Autowired
 	private BlogService blogService;
 	 
-	@PostMapping("/add")
-	public JsonResult add(@PathVariable("id") String id,@RequestBody CategoryVO vo) {
-		vo.setId(id);
-		blogService.addCategory(vo);
-		System.out.println(vo);
-		return JsonResult.success(vo);
-	}
 	
 	@GetMapping("/list")
 	public JsonResult list(@PathVariable("id") String id) {
 		List<CategoryVO> list = blogService.getCategory(id);
 		return JsonResult.success(list);
+	}
+	
+	@PostMapping("/add")
+	public JsonResult add(@PathVariable("id") String id,@RequestBody CategoryVO vo) {
+		vo.setId(id);
+		blogService.addCategory(vo);
+
+		
+		System.out.println("vo.getNo() >>>>  "+vo.getNo()); // 제일 최근 삽입 데이터  => select last_insert_id()
+		System.out.println("vo >>>>" + vo);
+		CategoryVO cateogoryVO = blogService.getCategory(vo.getNo());
+		System.out.println(cateogoryVO);
+		
+		cateogoryVO.setTotalCategoryCnt(blogService.getTotalCateogoryCount(id));
+		
+		return JsonResult.success(cateogoryVO);
 	}
 	
 }

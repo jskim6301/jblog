@@ -113,6 +113,19 @@ public class BlogService {
 		return min;
 	}
 
+	
+	
+	public CategoryVO getCategory(Long no) {
+		CategoryVO categoryVO = blogRepository.findCategoryByNo(no);
+		return categoryVO;
+	}
+
+	public Integer getTotalCateogoryCount(String id) {
+		
+		return blogRepository.totalCategoryCount(id);
+	}
+
+
 
 
 }
