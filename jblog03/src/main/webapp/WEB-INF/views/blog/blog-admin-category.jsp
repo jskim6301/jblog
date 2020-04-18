@@ -56,13 +56,17 @@ $(function(){
 		var vo = {};
 		
 		vo.name = $('#input-category').val();
-		if(vo.categoryName == ''){
+		if(vo.name == ''){
+			alert("카테고리 명을 입력하세요");
 			$('#input-category').focus();
+			return;
 		}
 		
 		vo.description = $('#input-description').val();
 		if(vo.description == ''){
+			alert("설명을 입력하세요");
 			$('#input-description').focus();
+			return;
 		}
 		
  		$.ajax({
@@ -143,7 +147,7 @@ $(function(){
 								</c:if>
 							</td>	
 						</tr>
-					</c:forEach>  --%>  
+					</c:forEach>   --%> 
 				</table>
 
    		   		<form id="add-form" action="" method="">
