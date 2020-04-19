@@ -10,8 +10,9 @@ public class CategoryVO {
 	private String categoryCnt; 
 	private Integer totalCategoryCnt;
 	
+
 	
-	
+
 
 	public Long getNo() {
 		return no;
@@ -56,11 +57,15 @@ public class CategoryVO {
 	public void setTotalCategoryCnt(Integer totalCategoryCnt) {
 		this.totalCategoryCnt = totalCategoryCnt;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "CategoryVO [no=" + no + ", name=" + name + ", description=" + description + ", regDate=" + regDate
 				+ ", id=" + id + ", categoryCnt=" + categoryCnt + ", totalCategoryCnt=" + totalCategoryCnt + "]";
 	}
+	
+	
 
 	
 

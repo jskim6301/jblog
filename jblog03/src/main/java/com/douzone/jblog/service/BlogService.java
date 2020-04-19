@@ -4,8 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,7 @@ public class BlogService {
 	public List<CategoryVO> getCategory(String id) {
 		
 		List<CategoryVO> categoryVO = blogRepository.findCategoryById(id);
+		
 		return categoryVO;
 	}
 
