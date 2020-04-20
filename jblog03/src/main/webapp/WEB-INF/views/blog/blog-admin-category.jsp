@@ -60,6 +60,7 @@ var fetchList = function(){
  	 			var html = listTemplate.render(response);
  				$('.admin-cat').append(html); 
  				
+ 				/*
  				var a = $('.admin-cat tr:nth-child(2) td')[0];
 				console.log(a);
 				var b = $('.admin-cat tr:first-child td')[0]; //=> first는 th 부분
@@ -67,6 +68,7 @@ var fetchList = function(){
 				
 				var firstRow = $('.admin-cat tr:last-child td')[0];
 				console.log(firstRow);
+				*/
  			},
  			error: function(xhr,status,e){
  				console.error(status + ":" + e);

@@ -10,7 +10,7 @@
 		<td><%=vo.categoryCnt%></td>
 		<td><%=vo.description%></td>
 		<td>
-			<% if(vo.categoryCnt == 0 && vo.no != data.firstRow){ %>
+			<% if(vo.categoryCnt == 0){ %>
 				<a href='<%=vo.no%>'>
 				<img src='<%=data.imgUrl%>'></a>
 			<% } %>	
