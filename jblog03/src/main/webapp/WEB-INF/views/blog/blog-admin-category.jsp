@@ -52,8 +52,7 @@ var fetchList = function(){
   				var contextPath= '${pageContext.request.contextPath }';
  				response.data.contextPath=contextPath;
  				
- 						
- 				 
+ 				
    				var imgUrl= '${pageContext.request.contextPath}/assets/images/delete.jpg';
  				response.data.imgUrl = imgUrl;
  				
@@ -106,9 +105,13 @@ $(function(){
 							/* $('.admin-cat a[data-no='+response.data+']').parents('tr').remove(); */
 							/* $('.admin-cat tr:nth-child(2) td').remove();  안됨 => 다시 삭제할 경우 오류*/
 							/* $('.admin-cat a[data-no='+response.data+']').remove(); a태그만 삭제 */
+							$('.admin-cat td').remove();
+							fetchList();
 							dialogDelete.dialog('close');
 							return;
 						}
+						
+						
 						
 						$('#dialog-delete-form p.validateTips.error').show();
 					},
