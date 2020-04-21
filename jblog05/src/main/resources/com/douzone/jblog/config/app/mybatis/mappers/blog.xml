@@ -16,10 +16,14 @@
 			select id,title,logo from blog where id = #{id}
 		]]>
 	</select>
+	
 	<insert id="categoryInsert" parameterType="categoryvo">
 		<![CDATA[
 			insert into category values(null,#{name},#{description},now(),#{id})
 		]]>
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+			select last_insert_id()
+		</selectKey>
 	</insert>
 	<select id="findCategoryById" parameterType="string" resultType="categoryvo">
 		<![CDATA[
@@ -81,4 +85,28 @@
 		select min(no) from category where id=#{id}
 	</select>
 	
+	<select id="findCategoryByNo" parameterType="long" resultType="categoryvo">
+		<![CDATA[
+ 			select 
+				a.no,
+				a.name,
+				a.description,
+				a.reg_date,
+				a.id,
+				count(b.category_no) as categoryCnt
+			from category a left join post b on a.no = b.category_no
+			where a.no = #{no} 
+		]]>
+	</select>	
+
+
+	<select id = "totalCategoryCount" parameterType="string" resultType="integer">
+		<![CDATA[
+			select count(*) 
+			from category
+        where id=#{id};
+		]]>
+	</select>
+	
+
 </mapper>
