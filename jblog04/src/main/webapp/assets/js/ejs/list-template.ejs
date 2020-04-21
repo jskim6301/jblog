@@ -1,0 +1,26 @@
+
+<%
+	for(var i=0;i<data.length;i++){
+		var vo = data[i];
+		
+%>
+	<tr>
+		<td><%=data.length-i%></td>
+		<td><%=vo.name%></td>
+		<td><%=vo.categoryCnt%></td>
+		<td><%=vo.description%></td>
+		<td>
+			<% if(vo.categoryCnt == 0){ %>
+				<a href='<%=vo.no%>'>
+				<img src='<%=data.imgUrl%>'></a>
+			<% } %>	
+		</td>
+
+	</tr>
+
+<%
+	}
+%>
+
+
+

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.douzone.jblog.service.UserService;
 import com.douzone.jblog.vo.UserVO;
+import com.douzone.security.AuthUser;
 
 @Controller
 @RequestMapping("/user")
@@ -39,8 +40,12 @@ public class UserController {
 		return "user/joinsuccess";
 	}
 	
+	
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String login() {
+	public String login(@AuthUser UserVO authUser) {
+		if(authUser != null) {
+			return "redirect:/";
+		}	
 		return "user/login";
 	}
 	
