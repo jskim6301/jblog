@@ -63,6 +63,12 @@
 		</dependency>		
 		
 		
+		<!-- jackson -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		</dependency>			
+		
 		<!-- spring jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>

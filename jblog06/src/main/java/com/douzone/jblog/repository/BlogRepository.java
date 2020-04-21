@@ -60,7 +60,16 @@ public class BlogRepository {
 		return min;
 	}
 
+	
+	
+	public CategoryVO findCategoryByNo(Long no) {
+		return sqlSession.selectOne("blog.findCategoryByNo",no);
+		
+	}
 
+	public Integer totalCategoryCount(String id) {
+		return sqlSession.selectOne("blog.totalCategoryCount",id);
+	}
 
 
 	
