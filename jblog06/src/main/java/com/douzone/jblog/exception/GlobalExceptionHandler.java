@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
 		else {
 			request.setAttribute("exception", errors.toString());
 			request.getRequestDispatcher("/WEB-INF/views/error/exception.jsp").forward(request, response);
-			 
+			  
 		}
 	}
 }
